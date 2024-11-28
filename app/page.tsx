@@ -12,7 +12,7 @@ export default function Home() {
       icon: Ticket,
       title: "Digital Event Tickets",
       description: "Create tickets that your attendees will never lose, built into their phone&apos;s wallet.",
-      href: "/event-tickets"
+      href: "/event-tickets/page.tsx"
     },
     {
       icon: Building,
