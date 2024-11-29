@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import StepByStepGuide from './components/StepByStepGuide'
 import { 
   Building, 
   Ticket, 
@@ -231,8 +232,161 @@ export default function Home() {
         </div>
       </div>
 
-// Add these sections after your existing stats section and before the CTA
+ {/* Step By Step Guide */}
+      'use client'
+import { useState, useEffect } from 'react'
+import { 
+  Smartphone, 
+  QrCode, 
+  Check, 
+  ArrowRight, 
+  Building,
+  Lock
+} from 'lucide-react'
 
+const StepByStepGuide = () => {
+  const [currentStep, setCurrentStep] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const steps = [
+    {
+      title: "Create Your Pass",
+      description: "Design and customize your digital passes in minutes.",
+      icon: Smartphone,
+      demo: (
+        <div className="bg-gray-900 rounded-xl p-4 relative overflow-hidden">
+          <div className={`transform transition-transform duration-500 ${
+            isAnimating ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+          }`}>
+            <div className="bg-indigo-600 rounded-lg p-4 text-white">
+              <div className="w-48 h-72 bg-white rounded-lg mx-auto relative">
+                <div className="absolute top-4 left-4 right-4 h-20 bg-indigo-100 rounded-lg" />
+                <div className="absolute top-28 left-4 right-4 h-4 bg-gray-200 rounded" />
+                <div className="absolute top-36 left-4 right-4 h-4 bg-gray-200 rounded" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <QrCode className="w-12 h-12 mx-auto text-gray-400" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Distribute to Users",
+      description: "Send passes instantly via email or SMS.",
+      icon: Building,
+      demo: (
+        <div className="bg-gray-900 rounded-xl p-4">
+          <div className={`transform transition-all duration-500 ${
+            isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+          }`}>
+            <div className="flex space-x-4">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                <Check className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1 bg-white rounded-lg p-4">
+                <p className="text-sm text-gray-600">Pass sent successfully!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Secure Access",
+      description: "Users access facilities with a simple tap of their phone.",
+      icon: Lock,
+      demo: (
+        <div className="bg-gray-900 rounded-xl p-4">
+          <div className={`transform transition-all duration-500 ${
+            isAnimating ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          }`}>
+            <div className="w-full h-32 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+              <Check className="w-16 h-16 text-white" />
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true)
+      setTimeout(() => {
+        setIsAnimating(false)
+        setCurrentStep((prev) => (prev + 1) % steps.length)
+      }, 3000)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+            How to Get Started
+          </h2>
+          <p className="mt-2 text-3xl font-extrabold text-gray-900">
+            Set Up Digital Passes in Minutes
+          </p>
+        </div>
+
+        <div className="mt-16 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+          {/* Steps */}
+          <div className="relative space-y-12">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className={`relative ${currentStep === index ? 'opacity-100' : 'opacity-50'}`}
+              >
+                <div className="flex items-center">
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${
+                    currentStep === index ? 'bg-indigo-600' : 'bg-gray-200'
+                  }`}>
+                    <step.icon className={`w-6 h-6 ${
+                      currentStep === index ? 'text-white' : 'text-gray-500'
+                    }`} />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-medium text-gray-900">{step.title}</h3>
+                    <p className="mt-1 text-gray-500">{step.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Interactive Demo */}
+          <div className="mt-10 lg:mt-0">
+            <div className="relative">
+              {steps[currentStep].demo}
+            </div>
+          </div>
+        </div>
+
+        {/* Progress Indicator */}
+        <div className="mt-8 flex justify-center space-x-2">
+          {steps.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full ${
+                currentStep === index ? 'bg-indigo-600' : 'bg-gray-300'
+              }`}
+              onClick={() => setCurrentStep(index)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default StepByStepGuide
+      
 {/* How It Works Section */}
 <div className="py-24 bg-gray-50">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -355,6 +509,179 @@ export default function Home() {
         </div>
       </div>
 
+{/* How It Works Section with Interactive Elements */}
+<div className="py-24 bg-gradient-to-b from-gray-50 to-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center">
+      <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">How It Works</h2>
+      <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Three Simple Steps to Digital Transformation
+      </p>
+    </div>
+
+    <div className="mt-20 relative">
+      {/* Connection lines */}
+      <div className="hidden lg:block absolute top-1/2 left-12 right-12 h-0.5 bg-gradient-to-r from-indigo-600 via-indigo-400 to-indigo-600" />
+      
+      <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-3">
+        {/* Step 1: Integration */}
+        <div className="relative p-2">
+          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12">
+              <div className="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                1
+              </div>
+            </div>
+            <div className="mt-6">
+              <h3 className="text-xl font-semibold text-center text-gray-900">Quick Integration</h3>
+              <div className="mt-4 space-y-4">
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Simple API integration</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Secure key management</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Expert support team</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 2: Distribution */}
+        <div className="relative p-2">
+          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12">
+              <div className="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                2
+              </div>
+            </div>
+            <div className="mt-6">
+              <h3 className="text-xl font-semibold text-center text-gray-900">Pass Distribution</h3>
+              <div className="mt-4 space-y-4">
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Instant delivery</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Bulk distribution</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Automated updates</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 3: Management */}
+        <div className="relative p-2">
+          <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12">
+              <div className="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                3
+              </div>
+            </div>
+            <div className="mt-6">
+              <h3 className="text-xl font-semibold text-center text-gray-900">Real-time Management</h3>
+              <div className="mt-4 space-y-4">
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Live monitoring</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Usage analytics</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                  <p className="ml-3 text-gray-600">Instant updates</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* Security & Compliance Section */}
+<div className="py-24 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center">
+      <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Security & Compliance</h2>
+      <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Enterprise-Grade Security
+      </p>
+      <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+        Your security is our top priority. We maintain the highest standards of data protection and compliance.
+      </p>
+    </div>
+
+    <div className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {/* Encryption */}
+      <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="flex items-center justify-center w-12 h-12 bg-indigo-100 rounded-xl">
+          <Lock className="w-6 h-6 text-indigo-600" />
+        </div>
+        <h3 className="mt-6 text-lg font-semibold text-gray-900">End-to-End Encryption</h3>
+        <p className="mt-4 text-gray-600">
+          Military-grade encryption for all data in transit and at rest with regular security audits.
+        </p>
+      </div>
+
+      {/* Compliance */}
+      <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="flex items-center justify-center w-12 h-12 bg-indigo-100 rounded-xl">
+          <Shield className="w-6 h-6 text-indigo-600" />
+        </div>
+        <h3 className="mt-6 text-lg font-semibold text-gray-900">Compliance Standards</h3>
+        <p className="mt-4 text-gray-600">
+          GDPR compliant, SOC 2 certified, and adherent to international data protection regulations.
+        </p>
+      </div>
+
+      {/* Authentication */}
+      <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="flex items-center justify-center w-12 h-12 bg-indigo-100 rounded-xl">
+          <Key className="w-6 h-6 text-indigo-600" />
+        </div>
+        <h3 className="mt-6 text-lg font-semibold text-gray-900">Secure Authentication</h3>
+        <p className="mt-4 text-gray-600">
+          Multi-factor authentication and advanced access controls protect your account.
+        </p>
+      </div>
+    </div>
+
+    {/* Security Metrics */}
+    <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
+      <div className="bg-white p-6 rounded-lg shadow text-center">
+        <p className="text-4xl font-bold text-indigo-600">256-bit</p>
+        <p className="mt-2 text-gray-600">AES Encryption</p>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow text-center">
+        <p className="text-4xl font-bold text-indigo-600">99.99%</p>
+        <p className="mt-2 text-gray-600">Uptime SLA</p>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow text-center">
+        <p className="text-4xl font-bold text-indigo-600">24/7</p>
+        <p className="mt-2 text-gray-600">Monitoring</p>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow text-center">
+        <p className="text-4xl font-bold text-indigo-600">ISO 27001</p>
+        <p className="mt-2 text-gray-600">Certified</p>
+      </div>
+    </div>
+  </div>
+</div>
+      
       {/* Clients Section */}
       <div id="clients" className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
