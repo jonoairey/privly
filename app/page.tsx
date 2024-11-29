@@ -231,6 +231,113 @@ export default function Home() {
         </div>
       </div>
 
+// Add these sections after your existing stats section and before the CTA
+
+{/* How It Works Section */}
+<div className="py-24 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center">
+      <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">How It Works</h2>
+      <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Simple Implementation, Powerful Results
+      </p>
+    </div>
+
+    <div className="mt-20 relative">
+      {/* Connection lines */}
+      <div className="hidden lg:block absolute top-1/2 left-12 right-12 h-0.5 bg-gray-200 transform -translate-y-1/2" />
+      
+      <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-3">
+        {/* Step 1 */}
+        <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">
+            1
+          </div>
+          <h3 className="mt-4 text-xl font-semibold text-center">Quick Setup</h3>
+          <p className="mt-2 text-gray-600 text-center">
+            Integrate our secure API with your existing systems in minutes.
+          </p>
+        </div>
+
+        {/* Step 2 */}
+        <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">
+            2
+          </div>
+          <h3 className="mt-4 text-xl font-semibold text-center">Distribute Passes</h3>
+          <p className="mt-2 text-gray-600 text-center">
+            Send digital passes directly to your users' mobile wallets.
+          </p>
+        </div>
+
+        {/* Step 3 */}
+        <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">
+            3
+          </div>
+          <h3 className="mt-4 text-xl font-semibold text-center">Manage & Track</h3>
+          <p className="mt-2 text-gray-600 text-center">
+            Real-time control and analytics through our dashboard.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* Industry Solutions Section */}
+<div className="py-24">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center">
+      <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Industry Solutions</h2>
+      <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Tailored For Your Industry
+      </p>
+    </div>
+
+    <div className="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Event Venues */}
+      <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-lg">
+            <Ticket className="w-8 h-8 text-indigo-600" />
+          </div>
+          <h3 className="mt-6 text-xl font-semibold">Event Venues</h3>
+          <p className="mt-4 text-gray-600">
+            Streamline entry, reduce wait times, and enhance the attendee experience.
+          </p>
+        </div>
+      </div>
+
+      {/* Office Buildings */}
+      <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-lg">
+            <Building className="w-8 h-8 text-indigo-600" />
+          </div>
+          <h3 className="mt-6 text-xl font-semibold">Office Buildings</h3>
+          <p className="mt-4 text-gray-600">
+            Secure access control with real-time management and monitoring.
+          </p>
+        </div>
+      </div>
+
+      {/* Retail */}
+      <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-lg">
+            <Tags className="w-8 h-8 text-indigo-600" />
+          </div>
+          <h3 className="mt-6 text-xl font-semibold">Retail</h3>
+          <p className="mt-4 text-gray-600">
+            Boost customer engagement with digital loyalty cards and coupons.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
       {/* Features Section */}
       <div id="features" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
