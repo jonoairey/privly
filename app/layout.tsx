@@ -18,23 +18,19 @@ export default function RootLayout({
               </Link>
 
               {/* Navigation Links */}
-              <div className="hidden md:flex space-x-8">
-                <Link href="/event-tickets" className="text-gray-600 hover:text-gray-900">
-                  Event Tickets
-                </Link>
-                <Link href="/access-control" className="text-gray-600 hover:text-gray-900">
-                  Access Control
-                </Link>
-                <Link href="/rewards" className="text-gray-600 hover:text-gray-900">
-                  Rewards
-                </Link>
-                <Link href="/contact" 
-                  className="inline-flex items-center px-4 py-2 border border-transparent 
-                           text-sm font-medium rounded-md text-white bg-indigo-600 
-                           hover:bg-indigo-700 transition-colors">
-                  Get Started
-                </Link>
-              </div>
+<div className="hidden md:flex md:items-center md:space-x-8">
+  <Link href="/event-tickets" className="text-gray-600 hover:text-gray-900">Event Tickets</Link>
+  <Link href="/access-control" className="text-gray-600 hover:text-gray-900">Access Control</Link>
+  <Link href="/rewards" className="text-gray-600 hover:text-gray-900">Rewards</Link>
+  <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
+  {/* Add the login button here */}
+  <Link 
+    href="/login" 
+    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+  >
+    Login
+  </Link>
+</div>
             </div>
           </div>
         </nav>
